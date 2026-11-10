@@ -1,12 +1,14 @@
-# IyoTube for Rokid AI Glasses
+# iYo for Rokid AI Glasses
 
-IyoTube plays YouTube links and direct media URLs on the green-display Rokid AI Glasses. Use **Wi-Fi settings** to connect the glasses, then choose **Search or open link** to enter a title or URL. Playback fills the screen and preserves the video proportions. Press **Back** to return to the menu.
+iYo plays YouTube links and direct media URLs on the green-display Rokid AI Glasses. Use **Wi-Fi settings** to connect the glasses, then choose **Search or open link** to enter a title or URL. Playback fills the screen and preserves the video proportions. Press **Back** to return to the menu.
 
 See the [installation guide](docs/INSTALL_IPHONE.md) for steps to install the APK using Hi Rokid on an iPhone.
 
-## Download 0.3.8
+## Download 0.4.0
 
-[Download iYoTube 0.3.8 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/IyoTube-0.3.8-debug.apk)
+[Download iYo 0.4.0 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/iYo-0.4.0-debug.apk)
+
+Version 0.4.0 displays **iYo** on the launcher and home screen and uses a new monitor icon.
 
 Version 0.3.8 prefills the title or URL field with **The MarkEr PH**. Press **Go** to search YouTube or type to replace the selected text.
 
