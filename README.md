@@ -4,9 +4,11 @@ iYo plays YouTube links and direct media URLs on the green-display Rokid AI Glas
 
 See the [installation guide](docs/INSTALL_IPHONE.md) for steps to install the APK using Hi Rokid on an iPhone.
 
-## Download 0.4.0
+## Download 0.4.1
 
-[Download iYo 0.4.0 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/iYo-0.4.0-debug.apk)
+[Download iYo 0.4.1 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/iYo-0.4.1-debug.apk)
+
+Version 0.4.1 adds a compact Featured Channels row below the main options. Swipe to move between tiles and select a channel to browse its videos. The MarkEr PH tile opens YouTube search for the channel name.
 
 Version 0.4.0 displays **iYo** on the launcher and home screen and uses a new monitor icon.
 
