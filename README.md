@@ -4,9 +4,11 @@ IyoTube plays YouTube links and direct media URLs on the green-display Rokid AI 
 
 See the [installation guide](docs/INSTALL_IPHONE.md) for steps to install the APK using Hi Rokid on an iPhone.
 
-## Download 0.3.6
+## Download 0.3.7
 
-[Download iYoTube 0.3.6 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/IyoTube-0.3.6-debug.apk)
+[Download iYoTube 0.3.7 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/IyoTube-0.3.7-debug.apk)
+
+Version 0.3.7 filters repeated touchpad input on the main options screen to reduce skipped items.
 
 In this APK, the top-right Wi-Fi button shows connection status, video actions require Wi-Fi, and **Play a sample video** opens The MarkEr PH’s YouTube video. Voice search was removed in 0.3.5.
 
