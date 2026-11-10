@@ -1,0 +1,87 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><style>html,body{margin:0;width:100%;height:100%;background:#000;color:#73ff80;font:16px sans-serif}#player{display:block;width:100%;height:100%;border:0}</style></head><body><div id="player"></div><script>
+const playlistId = '__PLAYLIST_ID__';
+let player, ready = false, failed = false;
+let playbackTimer;
+window.glassStatus = 'Connecting to YouTube…';
+
+const startupTimer = setTimeout(() => {
+ window.glassStatus = player
+  ? 'YouTube player timed out. Try another video.'
+  : 'YouTube connection timed out. Check internet on the glasses.';
+}, 20000);
+
+function fail(message) {
+ failed = true;
+ clearTimeout(startupTimer);
+ clearTimeout(playbackTimer);
+ window.glassStatus = message;
+}
+
+function startPlayback(target) {
+ clearTimeout(playbackTimer);
+ window.glassStatus = 'Starting YouTube video…';
+ playbackTimer = setTimeout(() => {
+  window.glassStatus = 'Video did not start. Press Play or try another video.';
+ }, 15000);
+ target.playVideo();
+}
+
+function onYouTubeIframeAPIReady() {
+ window.glassStatus = 'Opening YouTube player…';
+ const playerVars = {playsinline: 1, controls: 1, fs: 0, origin: location.origin};
+ const source = playlistId
+  ? {playerVars: {...playerVars, listType: 'playlist', list: playlistId}}
+  : {playerVars, videoId: '__VIDEO_ID__'};
+ player = new YT.Player('player', {
+  ...source,
+  events: {
+   onReady: event => {
+    if (failed) return;
+    ready = true;
+    clearTimeout(startupTimer);
+    startPlayback(event.target);
+   },
+   onStateChange: event => {
+    if (failed) return;
+    if ([0, 1, 2].includes(event.data)) clearTimeout(playbackTimer);
+    const states = {0: 'YouTube video ended', 1: 'YouTube playing', 2: 'YouTube paused', 3: 'YouTube buffering…'};
+    if (states[event.data]) window.glassStatus = states[event.data];
+   },
+   onError: event => {
+    const reasons = {
+     5: 'the embedded player could not play this video',
+     100: 'video unavailable',
+     101: 'embedding disabled for this video',
+     150: 'embedding disabled for this video',
+     153: 'YouTube could not identify this player'
+    };
+    fail('YouTube error ' + event.data + ' • ' + (reasons[event.data] || 'try another video'));
+   },
+   onAutoplayBlocked: () => {
+    if (failed) return;
+    clearTimeout(playbackTimer);
+    window.glassStatus = 'Autoplay blocked. Press Play in the YouTube player.';
+   }
+  }
+ });
+}
+
+window.glassCommand = function(action) {
+ if (!ready || failed) return;
+ if (action === 'toggle') {
+  if (player.getPlayerState() === 1) player.pauseVideo();
+  else startPlayback(player);
+ } else if (action === 'next' && playlistId) {
+  player.nextVideo();
+ } else if (action === 'previous' && playlistId) {
+  player.previousVideo();
+ } else if (action === 'back' || action === 'forward') {
+  player.seekTo(Math.max(0, player.getCurrentTime() + (action === 'back' ? -10 : 10)), true);
+ }
+};
+
+const api = document.createElement('script');
+api.src = 'https://www.youtube.com/iframe_api';
+api.onerror = () => fail('Could not reach YouTube. Check internet on the glasses.');
+document.head.appendChild(api);
+</script></body></html>
