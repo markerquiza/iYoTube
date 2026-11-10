@@ -4,9 +4,13 @@ IyoTube plays YouTube links and direct media URLs on the green-display Rokid AI 
 
 See the [installation guide](docs/INSTALL_IPHONE.md) for steps to install the APK using Hi Rokid on an iPhone.
 
-Voice search uses the Android speech recognizer when the glasses provide one.
+## Download 0.3.6
 
-## Build
+[Download iYoTube 0.3.6 debug APK](https://github.com/markerquiza/iYoTube/raw/refs/heads/main/dist/IyoTube-0.3.6-debug.apk)
+
+In this APK, the top-right Wi-Fi button shows connection status, video actions require Wi-Fi, and **Play a sample video** opens The MarkEr PH’s YouTube video. Voice search was removed in 0.3.5.
+
+## Build from repository source
 Open this directory in Android Studio, install Android SDK 35 and Build Tools 35.0.0, and select JDK 17 and Gradle 8.11.1. The Gradle wrapper is bundled.
 
 ```sh
